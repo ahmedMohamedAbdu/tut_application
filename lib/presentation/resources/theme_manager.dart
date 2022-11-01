@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tut_application/presentation/color_manager.dart';
-import 'package:tut_application/presentation/font_manager.dart';
-import 'package:tut_application/presentation/styles_manager.dart';
-import 'package:tut_application/presentation/values_manager.dart';
-
+import 'package:tut_application/presentation/resources/color_manager.dart';
+import 'package:tut_application/presentation/resources/styles_manager.dart';
+import 'package:tut_application/presentation/resources/values_manager.dart';
+import 'font_manager.dart';
 ThemeData getApplicationTheme() {
   return ThemeData(
     // mainColors
@@ -24,7 +23,7 @@ ThemeData getApplicationTheme() {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       color: ColorManager.primary,
-      elevation: AppSize.s4,
+      elevation:AppSize.s4,
       shadowColor: ColorManager.lightPrimary,
       titleTextStyle:
           getRegularStyle(color: ColorManager.white, fontSize: FontSize.s16),

@@ -46,7 +46,7 @@ ThemeData getApplicationTheme() {
         ),
         backgroundColor: ColorManager.primary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSize.s12),
+          borderRadius: BorderRadius.circular(AppSize.s14),
         ),
       ),
     ),

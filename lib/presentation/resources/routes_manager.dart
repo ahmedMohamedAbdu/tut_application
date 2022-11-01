@@ -3,6 +3,7 @@ import 'package:tut_application/presentation/forget_password/forget_password_vie
 import 'package:tut_application/presentation/login/login_view.dart';
 import 'package:tut_application/presentation/main/main_view.dart';
 import 'package:tut_application/presentation/register/register_view.dart';
+import 'package:tut_application/presentation/resources/strings_manager.dart';
 import 'package:tut_application/presentation/splash/splash_view.dart';
 import 'package:tut_application/presentation/store_details/store_details_view.dart';
 
@@ -42,9 +43,9 @@ class RoutesGenerator
   static Route<dynamic> unDefinedRoute(){
     return MaterialPageRoute(builder: (_) => Scaffold(
       appBar: AppBar(
-        title: const Text("NO Route Found"), // todo move this to Strings Manager
+        title: const Text(AppStrings.noRouteDefined),
       ),
-      body: const Center(child: Text("NO Route Found")), // todo move this to Strings Manager
+      body: const Center(child: Text(AppStrings.noRouteDefined)),
     ));
   }
 }

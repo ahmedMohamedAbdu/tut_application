@@ -62,5 +62,47 @@ ThemeData getApplicationTheme() {
     ),
 
     //inputDecorationTheme(textFromField)
+    inputDecorationTheme:InputDecorationTheme(
+      //contentPadding
+      contentPadding: const EdgeInsets.all(AppPadding.p8),
+      //hintStyle
+      hintStyle: getRegularStyle(color: ColorManager.grey,fontSize: FontSize.s14),
+      //labelStyle
+      labelStyle: getMediumStyle(color: ColorManager.grey,fontSize: FontSize.s14),
+      //errorStyle
+      errorStyle: getRegularStyle(color: ColorManager.error,),
+      //enabledBorderStyle
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.primary,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8),),
+      ),
+      //focusedBorderStyle
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.grey,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8),),
+      ),
+      //errorBorderStyle
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.error,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8),),
+      ),
+      //focusedErrorBorderStyle
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorManager.primary,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8),),
+      ),
+    ),
   );
 }

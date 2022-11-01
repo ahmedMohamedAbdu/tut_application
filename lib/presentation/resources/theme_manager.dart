@@ -44,7 +44,7 @@ ThemeData getApplicationTheme() {
           color: ColorManager.white,
           fontSize: FontSize.s17,
         ),
-        primary: ColorManager.primary,
+        backgroundColor: ColorManager.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSize.s12),
         ),
@@ -54,10 +54,10 @@ ThemeData getApplicationTheme() {
     //textTheme
     textTheme: TextTheme(
       displayLarge: getLightStyle(color: ColorManager.white,fontSize: FontSize.s22),
-      headline1: getSemiBoldStyle(color: ColorManager.darkGrey,fontSize: FontSize.s16),
-      subtitle1: getMediumStyle(color: ColorManager.lightGrey,fontSize: FontSize.s14),
-      caption: getRegularStyle(color: ColorManager.grey1,),
-      bodyText1: getRegularStyle(color: ColorManager.grey,),
+      headlineLarge: getSemiBoldStyle(color: ColorManager.darkGrey,fontSize: FontSize.s16),
+      titleMedium: getMediumStyle(color: ColorManager.lightGrey,fontSize: FontSize.s14),
+      bodyLarge: getRegularStyle(color: ColorManager.grey1,),
+      bodySmall: getRegularStyle(color: ColorManager.grey,),
     ),
 
     //inputDecorationTheme(textFromField)

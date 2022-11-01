@@ -83,7 +83,7 @@ flutter:
            weight: 500
          - asset: assets/fonts/Montserrat-Regular.ttf
            weight: 400
-         - asset: assets/fonts/Montserrat-Ligth.ttf
+         - asset: assets/fonts/Montserrat-Light.ttf
            weight: 300
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

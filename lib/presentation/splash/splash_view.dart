@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:tut_application/presentation/resources/assets_manager.dart';
 import 'package:tut_application/presentation/resources/color_manager.dart';
 import 'package:tut_application/presentation/resources/routes_manager.dart';
-
 import '../resources/constants_manager.dart';
 
 class SplashView extends StatefulWidget {

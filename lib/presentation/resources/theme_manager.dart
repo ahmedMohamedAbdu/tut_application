@@ -3,6 +3,7 @@ import 'package:tut_application/presentation/resources/color_manager.dart';
 import 'package:tut_application/presentation/resources/styles_manager.dart';
 import 'package:tut_application/presentation/resources/values_manager.dart';
 import 'font_manager.dart';
+
 ThemeData getApplicationTheme() {
   return ThemeData(
     // mainColors
@@ -23,7 +24,7 @@ ThemeData getApplicationTheme() {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       color: ColorManager.primary,
-      elevation:AppSize.s4,
+      elevation: AppSize.s4,
       shadowColor: ColorManager.lightPrimary,
       titleTextStyle:
           getRegularStyle(color: ColorManager.white, fontSize: FontSize.s16),
@@ -53,30 +54,45 @@ ThemeData getApplicationTheme() {
 
     //textTheme
     textTheme: TextTheme(
-      displayLarge: getLightStyle(color: ColorManager.white,fontSize: FontSize.s22),
-      headlineLarge: getSemiBoldStyle(color: ColorManager.darkGrey,fontSize: FontSize.s16),
-      titleMedium: getMediumStyle(color: ColorManager.lightGrey,fontSize: FontSize.s14),
-      bodyLarge: getRegularStyle(color: ColorManager.grey1,),
-      bodySmall: getRegularStyle(color: ColorManager.grey,),
+      displayLarge: getSemiBoldStyle(
+          color: ColorManager.darkGrey, fontSize: FontSize.s16),
+      headlineLarge: getSemiBoldStyle(
+          color: ColorManager.darkGrey, fontSize: FontSize.s16),
+      headlineMedium:
+          getMediumStyle(color: ColorManager.darkGrey, fontSize: FontSize.s14),
+      titleMedium:
+          getMediumStyle(color: ColorManager.lightGrey, fontSize: FontSize.s14),
+      bodyLarge: getRegularStyle(
+        color: ColorManager.grey1,
+      ),
+      bodySmall: getRegularStyle(
+        color: ColorManager.grey,
+      ),
     ),
 
     //inputDecorationTheme(textFromField)
-    inputDecorationTheme:InputDecorationTheme(
+    inputDecorationTheme: InputDecorationTheme(
       //contentPadding
       contentPadding: const EdgeInsets.all(AppPadding.p8),
       //hintStyle
-      hintStyle: getRegularStyle(color: ColorManager.grey,fontSize: FontSize.s14),
+      hintStyle:
+          getRegularStyle(color: ColorManager.grey, fontSize: FontSize.s14),
       //labelStyle
-      labelStyle: getMediumStyle(color: ColorManager.grey,fontSize: FontSize.s14),
+      labelStyle:
+          getMediumStyle(color: ColorManager.grey, fontSize: FontSize.s14),
       //errorStyle
-      errorStyle: getRegularStyle(color: ColorManager.error,),
+      errorStyle: getRegularStyle(
+        color: ColorManager.error,
+      ),
       //enabledBorderStyle
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: ColorManager.primary,
           width: AppSize.s1_5,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8),),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(AppSize.s8),
+        ),
       ),
       //focusedBorderStyle
       focusedBorder: OutlineInputBorder(
@@ -84,7 +100,9 @@ ThemeData getApplicationTheme() {
           color: ColorManager.grey,
           width: AppSize.s1_5,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8),),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(AppSize.s8),
+        ),
       ),
       //errorBorderStyle
       errorBorder: OutlineInputBorder(
@@ -92,7 +110,9 @@ ThemeData getApplicationTheme() {
           color: ColorManager.error,
           width: AppSize.s1_5,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8),),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(AppSize.s8),
+        ),
       ),
       //focusedErrorBorderStyle
       focusedErrorBorder: OutlineInputBorder(
@@ -100,7 +120,9 @@ ThemeData getApplicationTheme() {
           color: ColorManager.primary,
           width: AppSize.s1_5,
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8),),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(AppSize.s8),
+        ),
       ),
     ),
   );

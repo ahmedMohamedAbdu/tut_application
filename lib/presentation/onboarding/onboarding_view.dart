@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tut_application/presentation/resources/assets_manager.dart';
+ import 'package:tut_application/presentation/resources/assets_manager.dart';
 import 'package:tut_application/presentation/resources/color_manager.dart';
+import 'package:tut_application/presentation/resources/constants_manager.dart';
 import 'package:tut_application/presentation/resources/strings_manager.dart';
 
+import '../resources/routes_manager.dart';
 import '../resources/values_manager.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -36,7 +38,7 @@ class _OnboardingViewState extends State<OnboardingView> {
       backgroundColor: ColorManager.white,
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: ColorManager.white,
+          statusBarColor: ColorManager.darkGrey,
           statusBarBrightness: Brightness.dark,
         ),
       ),
@@ -59,7 +61,9 @@ class _OnboardingViewState extends State<OnboardingView> {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, Routes.loginRoute);
+                },
                 child: const Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
@@ -80,44 +84,75 @@ class _OnboardingViewState extends State<OnboardingView> {
         Padding(
           padding: const EdgeInsets.all(AppPadding.p14),
           child: GestureDetector(
-            child:  SizedBox(
+            child: SizedBox(
               width: AppSize.s20,
-              height:AppSize.s20 ,
+              height: AppSize.s20,
               child: SvgPicture.asset(ImageAssets.leftArrow),
             ),
+            onTap: () {
+              //go to pre slide
+              _pageController.animateToPage(_getPreviousIndex(),
+                  duration:
+                      const Duration(milliseconds: AppConstants.sliderAnimation),
+                  curve: Curves.bounceInOut);
+            },
           ),
         ),
         Row(
           children: [
-            for(int i = 0;i<_list.length;i++ )
-              _getProperCicle(i),
+            for (int i = 0; i < _list.length; i++) _getProperCircle(i),
           ],
         ),
         Padding(
           padding: const EdgeInsets.all(AppPadding.p14),
           child: GestureDetector(
-            child:  SizedBox(
+            child: SizedBox(
               width: AppSize.s20,
-              height:AppSize.s20 ,
+              height: AppSize.s20,
               child: SvgPicture.asset(ImageAssets.rightArrow),
             ),
+            onTap: () {
+              //go to pre slide
+              _pageController.animateToPage(_getNextIndex(),
+                  duration:
+                  const Duration(milliseconds: AppConstants.sliderAnimation),
+                  curve: Curves.bounceInOut);
+            },
           ),
         ),
       ],
     );
   }
-  Widget _getProperCicle(int index)
+
+  int _getNextIndex()
   {
-    if (index == _currentIndex)
+    int nextIndex = _currentIndex++;
+
+    if (nextIndex == _list.length)
     {
-      return SvgPicture.asset(ImageAssets.hollowCircle);
+      nextIndex = 0;
     }
-    else {
+    return nextIndex;
+  }
+
+  int _getPreviousIndex()
+  {
+    int previousIndex = _currentIndex--;
+    if (previousIndex == -1)
+    {
+      previousIndex = _list.length-1;
+    }
+    return previousIndex;
+  }
+
+  Widget _getProperCircle(int index) {
+    if (index == _currentIndex) {
+      return SvgPicture.asset(ImageAssets.hollowCircle);
+    } else {
       return SvgPicture.asset(ImageAssets.solidCircle);
     }
   }
 }
-
 
 class OnboardingPage extends StatelessWidget {
   final SliderObject _sliderObject;

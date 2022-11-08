@@ -6,8 +6,8 @@ import 'package:tut_application/presentation/resources/color_manager.dart';
 import 'package:tut_application/presentation/resources/constants_manager.dart';
 import 'package:tut_application/presentation/resources/strings_manager.dart';
 
-import '../resources/routes_manager.dart';
-import '../resources/values_manager.dart';
+import '../../resources/routes_manager.dart';
+import '../../resources/values_manager.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({Key? key}) : super(key: key);

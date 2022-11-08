@@ -66,13 +66,58 @@ class _OnboardingViewState extends State<OnboardingView> {
                 ),
               ),
             ),
-            //Widgets
+            _getBottomSheetWidget(),
           ],
         ),
       ),
     );
   }
+
+  Widget _getBottomSheetWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p14),
+          child: GestureDetector(
+            child:  SizedBox(
+              width: AppSize.s20,
+              height:AppSize.s20 ,
+              child: SvgPicture.asset(ImageAssets.leftArrow),
+            ),
+          ),
+        ),
+        Row(
+          children: [
+            for(int i = 0;i<_list.length;i++ )
+              _getProperCicle(i),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.all(AppPadding.p14),
+          child: GestureDetector(
+            child:  SizedBox(
+              width: AppSize.s20,
+              height:AppSize.s20 ,
+              child: SvgPicture.asset(ImageAssets.rightArrow),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+  Widget _getProperCicle(int index)
+  {
+    if (index == _currentIndex)
+    {
+      return SvgPicture.asset(ImageAssets.hollowCircle);
+    }
+    else {
+      return SvgPicture.asset(ImageAssets.solidCircle);
+    }
+  }
 }
+
 
 class OnboardingPage extends StatelessWidget {
   final SliderObject _sliderObject;

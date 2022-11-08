@@ -37,6 +37,8 @@ class _OnboardingViewState extends State<OnboardingView> {
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
+        backgroundColor: ColorManager.white,
+        elevation: AppSize.s0,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: ColorManager.darkGrey,
           statusBarBrightness: Brightness.dark,
@@ -55,8 +57,8 @@ class _OnboardingViewState extends State<OnboardingView> {
           }),
       bottomSheet: Container(
         color: ColorManager.white,
-        height: AppSize.s100,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Align(
               alignment: Alignment.centerRight,
@@ -64,9 +66,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, Routes.loginRoute);
                 },
-                child: const Text(
+                child:  Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
             ),
@@ -78,55 +81,61 @@ class _OnboardingViewState extends State<OnboardingView> {
   }
 
   Widget _getBottomSheetWidget() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p14),
-          child: GestureDetector(
-            child: SizedBox(
-              width: AppSize.s20,
-              height: AppSize.s20,
-              child: SvgPicture.asset(ImageAssets.leftArrow),
+    return Container(
+      color: ColorManager.primary,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p14),
+            child: GestureDetector(
+              child: SizedBox(
+                width: AppSize.s20,
+                height: AppSize.s20,
+                child: SvgPicture.asset(ImageAssets.leftArrow),
+              ),
+              onTap: () {
+                //go to pre slide
+                _pageController.animateToPage(_getPreviousIndex(),
+                    duration:
+                        const Duration(milliseconds: AppConstants.sliderAnimation),
+                    curve: Curves.bounceInOut);
+              },
             ),
-            onTap: () {
-              //go to pre slide
-              _pageController.animateToPage(_getPreviousIndex(),
-                  duration:
-                      const Duration(milliseconds: AppConstants.sliderAnimation),
-                  curve: Curves.bounceInOut);
-            },
           ),
-        ),
-        Row(
-          children: [
-            for (int i = 0; i < _list.length; i++) _getProperCircle(i),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(AppPadding.p14),
-          child: GestureDetector(
-            child: SizedBox(
-              width: AppSize.s20,
-              height: AppSize.s20,
-              child: SvgPicture.asset(ImageAssets.rightArrow),
+          Row(
+            children: [
+              for (int i = 0; i < _list.length; i++) Padding(
+                padding: const EdgeInsets.all(AppPadding.p8),
+                child: _getProperCircle(i),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(AppPadding.p14),
+            child: GestureDetector(
+              child: SizedBox(
+                width: AppSize.s20,
+                height: AppSize.s20,
+                child: SvgPicture.asset(ImageAssets.rightArrow),
+              ),
+              onTap: () {
+                //go to pre slide
+                _pageController.animateToPage(_getNextIndex(),
+                    duration:
+                    const Duration(milliseconds: AppConstants.sliderAnimation),
+                    curve: Curves.bounceInOut);
+              },
             ),
-            onTap: () {
-              //go to pre slide
-              _pageController.animateToPage(_getNextIndex(),
-                  duration:
-                  const Duration(milliseconds: AppConstants.sliderAnimation),
-                  curve: Curves.bounceInOut);
-            },
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   int _getNextIndex()
   {
-    int nextIndex = _currentIndex++;
+    int nextIndex = ++ _currentIndex;
 
     if (nextIndex == _list.length)
     {
@@ -137,7 +146,7 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   int _getPreviousIndex()
   {
-    int previousIndex = _currentIndex--;
+    int previousIndex = --_currentIndex;
     if (previousIndex == -1)
     {
       previousIndex = _list.length-1;

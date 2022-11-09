@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tut_application/domain/models.dart';
- import 'package:tut_application/presentation/resources/assets_manager.dart';
+import 'package:tut_application/presentation/onboarding/viewmodel/onboarding_viewmodel.dart';
+import 'package:tut_application/presentation/resources/assets_manager.dart';
 import 'package:tut_application/presentation/resources/color_manager.dart';
 import 'package:tut_application/presentation/resources/constants_manager.dart';
 import 'package:tut_application/presentation/resources/strings_manager.dart';
@@ -18,11 +19,24 @@ class OnboardingView extends StatefulWidget {
 
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController();
+  final OnboardingViewModel _viewModel = OnboardingViewModel();
 
+  _bind() {
+    _viewModel.start();
+  }
 
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+    return _getContentWidget();
+  }
+
+  Widget _getContentWidget(){
     return Scaffold(
       backgroundColor: ColorManager.white,
       appBar: AppBar(
@@ -55,7 +69,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, Routes.loginRoute);
                 },
-                child:  Text(
+                child: Text(
                   AppStrings.skip,
                   textAlign: TextAlign.end,
                   style: Theme.of(context).textTheme.titleMedium,
@@ -86,18 +100,19 @@ class _OnboardingViewState extends State<OnboardingView> {
               onTap: () {
                 //go to pre slide
                 _pageController.animateToPage(_getPreviousIndex(),
-                    duration:
-                        const Duration(milliseconds: AppConstants.sliderAnimation),
+                    duration: const Duration(
+                        milliseconds: AppConstants.sliderAnimation),
                     curve: Curves.bounceInOut);
               },
             ),
           ),
           Row(
             children: [
-              for (int i = 0; i < _list.length; i++) Padding(
-                padding: const EdgeInsets.all(AppPadding.p8),
-                child: _getProperCircle(i),
-              ),
+              for (int i = 0; i < _list.length; i++)
+                Padding(
+                  padding: const EdgeInsets.all(AppPadding.p8),
+                  child: _getProperCircle(i),
+                ),
             ],
           ),
           Padding(
@@ -111,8 +126,8 @@ class _OnboardingViewState extends State<OnboardingView> {
               onTap: () {
                 //go to pre slide
                 _pageController.animateToPage(_getNextIndex(),
-                    duration:
-                    const Duration(milliseconds: AppConstants.sliderAnimation),
+                    duration: const Duration(
+                        milliseconds: AppConstants.sliderAnimation),
                     curve: Curves.bounceInOut);
               },
             ),
@@ -121,7 +136,6 @@ class _OnboardingViewState extends State<OnboardingView> {
       ),
     );
   }
-
 
   Widget _getProperCircle(int index) {
     if (index == _currentIndex) {
@@ -133,7 +147,7 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   @override
   void dispose() {
-    // TODO: viewmodel.dispose()
+    _viewModel.dispose();
     super.dispose();
   }
 }
@@ -173,4 +187,3 @@ class OnboardingPage extends StatelessWidget {
     );
   }
 }
-

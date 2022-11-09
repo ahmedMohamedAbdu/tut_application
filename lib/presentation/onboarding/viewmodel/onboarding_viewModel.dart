@@ -9,7 +9,7 @@ class OnboardingViewModel extends BaseViewModel
 
   //stream controllers output
 
-   StreamController _streamController = StreamController<SliderViewObject>();
+   final StreamController _streamController = StreamController<SliderViewObject>();
    late final List<SliderObject> _list ;
    int _currentIndex = 0;
 

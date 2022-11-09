@@ -1,7 +1,8 @@
 import 'dart:async';
-
 import 'package:tut_application/domain/models.dart';
 import 'package:tut_application/presentation/base/base_view_model.dart';
+import 'package:tut_application/presentation/resources/assets_manager.dart';
+import 'package:tut_application/presentation/resources/strings_manager.dart';
 
 class OnboardingViewModel extends BaseViewModel
     with OnboardingViewModelInputs, OnboardingViewModelOutputs {
@@ -9,16 +10,23 @@ class OnboardingViewModel extends BaseViewModel
   //stream controllers output
 
    StreamController _streamController = StreamController<SliderViewObject>();
+   late final List<SliderObject> _list ;
+   int _currentIndex = 0;
 
-  //onboarding viewModel inputs
+
+
+   //onboarding viewModel inputs
   @override
   void dispose() {
-    // TODO: implement dispose
+    _streamController.close();
   }
 
   @override
   void start() {
-    // TODO: implement start
+    //view model start your job
+    _list = _getSliderData();
+    _postDataToView();
+
   }
 
   @override
@@ -37,14 +45,28 @@ class OnboardingViewModel extends BaseViewModel
   }
 
   @override
-  // TODO: implement inputSliderViewObject
-  Sink get inputSliderViewObject => throw UnimplementedError();
+  Sink get inputSliderViewObject =>  _streamController.sink;
 
    //onboarding viewModel outputs
 
   @override
-  // TODO: implement outputSliderViewObject
-  Stream get outputSliderViewObject => throw UnimplementedError();
+  Stream<SliderViewObject> get outputSliderViewObject => _streamController.stream.map((sliderViewObject) => sliderViewObject);
+
+  // onboarding private func
+   List<SliderObject> _getSliderData() => [
+     SliderObject(AppStrings.onboardingSubTitle1,
+         AppStrings.onboardingSubTitle1, ImageAssets.onboardingLogo1),
+     SliderObject(AppStrings.onboardingSubTitle2,
+         AppStrings.onboardingSubTitle2, ImageAssets.onboardingLogo2),
+     SliderObject(AppStrings.onboardingSubTitle3,
+         AppStrings.onboardingSubTitle3, ImageAssets.onboardingLogo3),
+     SliderObject(AppStrings.onboardingSubTitle4,
+         AppStrings.onboardingSubTitle4, ImageAssets.onboardingLogo4),
+   ];
+   void _postDataToView(){
+     inputSliderViewObject.add(SliderViewObject(_list[_currentIndex],_list.length,_currentIndex));
+
+   }
 }
 
 //inputs mean orders that are view model will receive from view
@@ -61,5 +83,5 @@ Sink get inputSliderViewObject;
 abstract class OnboardingViewModelOutputs {
   // stream controller outputs
 
-  Stream get outputSliderViewObject;
+  Stream<SliderViewObject> get outputSliderViewObject;
 }

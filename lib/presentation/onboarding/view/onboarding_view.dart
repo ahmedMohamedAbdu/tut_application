@@ -122,26 +122,6 @@ class _OnboardingViewState extends State<OnboardingView> {
     );
   }
 
-  int _getNextIndex()
-  {
-    int nextIndex = ++ _currentIndex;
-
-    if (nextIndex == _list.length)
-    {
-      nextIndex = 0;
-    }
-    return nextIndex;
-  }
-
-  int _getPreviousIndex()
-  {
-    int previousIndex = --_currentIndex;
-    if (previousIndex == -1)
-    {
-      previousIndex = _list.length-1;
-    }
-    return previousIndex;
-  }
 
   Widget _getProperCircle(int index) {
     if (index == _currentIndex) {
